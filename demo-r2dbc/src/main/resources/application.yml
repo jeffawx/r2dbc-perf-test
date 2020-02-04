@@ -1,0 +1,9 @@
+spring:
+  flyway:
+    url: jdbc:postgresql://localhost:5433/rxdemo?currentSchema=r2dbc
+    user: postgres
+    password: postgres
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/rxdemo?schema=r2dbc
+    username: postgres
+    password: postgres

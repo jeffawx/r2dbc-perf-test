@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-r2dbc-deployment
+spec:
+  selector:
+    matchLabels:
+      app: demo-r2dbc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-r2dbc
+    spec:
+      containers:
+        - name: demo-r2dbc
+          image: gcr.io/jfang-test/demo-r2dbc
+          envFrom:
+            - secretRef:
+                name: database-secret
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /ping
+          readinessProbe:
+            periodSeconds: 10
+            httpGet:
+              port: 8080
+              path: /actuator/health
