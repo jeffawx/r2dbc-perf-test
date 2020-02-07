@@ -7,7 +7,8 @@ CREATE TABLE customer
     email       text,
     address     text,
     create_time timestamptz NOT NULL             DEFAULT now(),
-    last_update timestamptz NOT NULL             DEFAULT now()
+    last_update timestamptz NOT NULL             DEFAULT now(),
+    version     INTEGER     NOT NULL             DEFAULT 0
 );
 
 CREATE TABLE orders

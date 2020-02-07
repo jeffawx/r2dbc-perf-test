@@ -1,0 +1,83 @@
+### ping
+GET {{baseUrl}}/ping
+Accept: application/json
+
+### create new customer
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "name": "Jeff",
+  "email": "jeff.fang@airwallex.com"
+}
+
+> {% client.global.set("customerId", response.body.id); %}
+
+### get customer by id
+GET {{baseUrl}}/customers/{{customerId}}
+Accept: application/json
+
+### search customer by name
+GET {{baseUrl}}/customers/searchByName?name=jeff
+Accept: application/json
+
+### search customer
+POST {{baseUrl}}/customers/search
+Content-Type: application/json
+
+{
+  "email": "jeff.fang@airwallex.com"
+}
+
+### modify customer
+PUT {{baseUrl}}/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "id": "{{customerId}}",
+  "name": "Jeff",
+  "email": "jeff.jie.fang@gmail.com"
+}
+
+### list all customers
+GET {{baseUrl}}/customers
+Accept: application/json
+
+### create new order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "id" : "{{$uuid}}",
+  "amount" : {{$randomInt}},
+  "ccy" : "USD",
+  "customerId" : "{{customerId}}"
+}
+
+> {% client.global.set("orderId", response.body.id); %}
+
+### get order by id
+GET {{baseUrl}}/orders/{{orderId}}
+Accept: application/json
+
+### list all orders
+GET {{baseUrl}}/orders
+Accept: application/json
+
+### search order by customer
+GET {{baseUrl}}/orders/searchByCustomer?customerId={{customerId}}
+Accept: application/json
+
+### delete order by customer
+DELETE {{baseUrl}}/orders/deleteByCustomer?customerId={{customerId}}
+
+### delete customer by id
+DELETE {{baseUrl}}/customers/{{customerId}}
+
+### delete all orders
+POST {{baseUrl}}/orders/deleteAll
+
+### delete all customers
+POST {{baseUrl}}/customers/deleteAll
+
+###

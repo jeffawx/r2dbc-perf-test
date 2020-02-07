@@ -27,6 +27,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("ch.sbb:springboot-graceful-shutdown:2.0.1")
     implementation("com.airwallex.common:common-rx:1.1.9")
+    implementation("com.airwallex.common:common-postgres:1.1.9")
     implementation("org.springframework.boot.experimental:spring-boot-starter-data-r2dbc")
     runtimeOnly("io.r2dbc:r2dbc-postgresql")
 
