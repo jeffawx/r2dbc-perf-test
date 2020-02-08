@@ -1,6 +1,5 @@
-package com.airwallex.demo.r2dbc.domain
+package com.airwallex.demo.jdbc.domain
 
-import com.airwallex.common.lang.Codecs
 import com.airwallex.common.postgres.annotations.Entity
 import com.airwallex.common.postgres.model.BaseEntity
 import com.fasterxml.jackson.annotation.JsonFormat
@@ -24,8 +23,3 @@ data class Order(
     val amount: BigDecimal,
     val customerId: UUID
 ) : BaseEntity
-
-fun main() {
-    val order = Order(ccy = CurrencyCode.USD, amount = BigDecimal.TEN, customerId = UUID.randomUUID())
-    println(Codecs.pprint(order))
-}

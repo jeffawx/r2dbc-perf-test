@@ -1,14 +1,15 @@
-package com.airwallex.demo.r2dbc
+package com.airwallex.demo.jdbc
 
-import com.airwallex.demo.r2dbc.domain.Customer
-import com.airwallex.demo.r2dbc.domain.CustomerSearch
-import com.airwallex.demo.r2dbc.domain.Order
-import com.airwallex.demo.r2dbc.repository.CustomerRepository
-import com.airwallex.demo.r2dbc.repository.OrderRepository
+import com.airwallex.demo.jdbc.domain.Customer
+import com.airwallex.demo.jdbc.domain.CustomerSearch
+import com.airwallex.demo.jdbc.domain.Order
+import com.airwallex.demo.jdbc.repository.CustomerRepository
+import com.airwallex.demo.jdbc.repository.OrderRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.body
 import org.springframework.web.reactive.function.server.router
+import java.time.Duration
 import java.util.UUID
 
 @Configuration
@@ -30,7 +31,13 @@ class RouteConfig {
             GET("/{id}") { ok().body(customerRepo.findById(UUID.fromString(it.pathVariable("id")))) }
 
             // Create new customer
-            POST("/") { accepted().body(it.bodyToMono(Customer::class.java).flatMap(customerRepo::save)) }
+            POST("/") {
+                accepted().body(
+                    it.bodyToMono(Customer::class.java).delayElement(Duration.ofMillis(200)).flatMap(
+                        customerRepo::save
+                    )
+                )
+            }
 
             // Update existing customer
             PUT("/{id}") { ok().body(it.bodyToMono(Customer::class.java).flatMap(customerRepo::save)) }
@@ -49,7 +56,13 @@ class RouteConfig {
             GET("/{id}") { ok().body(orderRepo.findById(UUID.fromString(it.pathVariable("id")))) }
 
             // Create new order
-            POST("/") { accepted().body(it.bodyToMono(Order::class.java).flatMap(orderRepo::save)) }
+            POST("/") {
+                accepted().body(
+                    it.bodyToMono(Order::class.java).delayElement(Duration.ofMillis(200)).flatMap(
+                        orderRepo::save
+                    )
+                )
+            }
 
             DELETE("/deleteByCustomer") { ok().body(orderRepo.deleteByCustomer(UUID.fromString(it.queryParam("customerId").get()))) }
             POST("/deleteAll") { ok().body(orderRepo.deleteAll()) }

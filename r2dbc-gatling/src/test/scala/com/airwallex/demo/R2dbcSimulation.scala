@@ -14,7 +14,8 @@ class R2dbcSimulation extends Simulation {
   val uuidFeeder = Iterator.continually(Map("uuid" -> UUID.randomUUID().toString))
 
   val httpProtocol = http
-    .baseUrl("http://34.102.238.220")
+    .baseUrl("http://35.241.41.84") // jdbc
+    //.baseUrl("http://34.98.120.108") // r2dbc
     .acceptHeader("application/json")
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -68,7 +69,7 @@ class R2dbcSimulation extends Simulation {
 
   setUp(
     scn.inject(
-      rampUsers(4000) during (30 seconds)
+      rampUsers(1000) during (30 seconds)
     )
-  ).maxDuration(10 minutes).protocols(httpProtocol)
+  ).maxDuration(20 minutes).protocols(httpProtocol)
 }

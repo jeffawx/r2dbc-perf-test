@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-r2dbc-deployment
+  name: demo-jdbc-deployment
 spec:
   selector:
     matchLabels:
-      app: demo-r2dbc
+      app: demo-jdbc
   replicas: 1
   template:
     metadata:
       labels:
-        app: demo-r2dbc
+        app: demo-jdbc
     spec:
       containers:
-        - name: demo-r2dbc
-          image: gcr.io/jfang-test/demo-r2dbc
+        - name: demo-jdbc
+          image: gcr.io/jfang-test/demo-jdbc
           envFrom:
             - secretRef:
-                name: database-secret-r2dbc
+                name: database-secret-jdbc
           ports:
             - containerPort: 8080
           livenessProbe:

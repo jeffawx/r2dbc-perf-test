@@ -1,0 +1,14 @@
+spring:
+  flyway:
+    url: jdbc:postgresql://localhost:5433/rxdemo?currentSchema=jdbc
+    user: postgres
+    password: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5433/rxdemo?currentSchema=jdbc
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+
+estaGracefulShutdownWaitSeconds: 1

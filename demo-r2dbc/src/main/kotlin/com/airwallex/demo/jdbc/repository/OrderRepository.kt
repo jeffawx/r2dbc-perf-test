@@ -1,9 +1,9 @@
-package com.airwallex.demo.r2dbc.repository
+package com.airwallex.demo.jdbc.repository
 
 import com.airwallex.common.rx.db.BaseEntityRepository
 import com.airwallex.common.rx.db.delete
 import com.airwallex.common.rx.db.fromTable
-import com.airwallex.demo.r2dbc.domain.Order
+import com.airwallex.demo.jdbc.domain.Order
 import org.springframework.data.r2dbc.core.DatabaseClient
 import org.springframework.stereotype.Repository
 import java.util.UUID

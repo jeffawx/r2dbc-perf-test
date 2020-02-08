@@ -1,4 +1,4 @@
-package com.airwallex.demo.r2dbc
+package com.airwallex.demo.jdbc
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

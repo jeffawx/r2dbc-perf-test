@@ -1,10 +1,10 @@
-package com.airwallex.demo.r2dbc.repository
+package com.airwallex.demo.jdbc.repository
 
 import com.airwallex.common.rx.db.RowMapper
 import com.airwallex.common.rx.db.fromTable
 import com.airwallex.common.rx.db.getValue
-import com.airwallex.demo.r2dbc.domain.Customer
-import com.airwallex.demo.r2dbc.domain.CustomerSearch
+import com.airwallex.demo.jdbc.domain.Customer
+import com.airwallex.demo.jdbc.domain.CustomerSearch
 import org.springframework.data.r2dbc.core.DatabaseClient
 import org.springframework.data.r2dbc.repository.Query
 import org.springframework.data.repository.reactive.ReactiveCrudRepository

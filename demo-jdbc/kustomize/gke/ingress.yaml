@@ -1,0 +1,8 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-jdbc-ingress
+spec:
+  backend:
+    serviceName: demo-jdbc-svc
+    servicePort: 8080

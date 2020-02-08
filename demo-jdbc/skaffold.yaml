@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2alpha2
+kind: Config
+build:
+  artifacts:
+    - image: gcr.io/jfang-test/demo-jdbc
+      jib: {}
+deploy:
+  kustomize:
+    path: kustomize/base
+profiles:
+  - name: gke
+    deploy:
+      kustomize:
+        path: kustomize/gke

@@ -7,3 +7,8 @@ spring:
     url: r2dbc:postgresql://localhost:5433/rxdemo?schema=r2dbc
     username: postgres
     password: postgres
+    pool:
+      max-size: 50
+      initial-size: 10
+
+estaGracefulShutdownWaitSeconds: 1

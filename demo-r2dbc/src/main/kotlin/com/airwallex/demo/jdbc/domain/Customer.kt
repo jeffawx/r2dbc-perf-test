@@ -1,4 +1,4 @@
-package com.airwallex.demo.r2dbc.domain
+package com.airwallex.demo.jdbc.domain
 
 import org.springframework.data.annotation.Id
 import java.time.ZonedDateTime
